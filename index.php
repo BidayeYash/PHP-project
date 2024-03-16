@@ -1,7 +1,7 @@
 <?php 
 session_start();
 if(!isset($_SESSION["username"]) && !isset($_SESSION["password"])){
-    header("Location:login.html");
+    header("Location:adminlogin.html");
 }
 ?>
 <!DOCTYPE html>
@@ -62,39 +62,38 @@ if(!isset($_SESSION["username"]) && !isset($_SESSION["password"])){
             <div class="row h-100">
                 <div class="col-12 h-100">
                     <nav class="h-100 navbar navbar-expand-lg align-items-center">
-                        <a class="navbar-brand" href="index.php">caviar</a>
+                        <a class="navbar-brand" href="index.php">Caviar</a>
                         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#caviarNav" aria-controls="caviarNav" aria-expanded="false" aria-label="Toggle navigation"><span class="fa fa-bars"></span></button>
                         <div class="collapse navbar-collapse" id="caviarNav">
                             <ul class="navbar-nav ml-auto" id="caviarMenu">
-                                <li class="nav-item active">
-                                    <a class="nav-link" href="#home">Home <span class="sr-only">(current)</span></a>
-                                </li>
+                               
                                 <li class="nav-item dropdown">
                             
-                                        <a class="nav-link" href="regular-page.html">Regular Page</a>
+                                        <a class="nav-link" href="usermanage.php">Usermanage</a>
     
                                 </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#about">About Us</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="menu.html">Menu</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#awards">Awards</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#testimonial">Testimonials</a>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="addproduct.php" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Add Product</a>
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        <a class="dropdown-item" href="addbreakfast.html">Breakfast</a>
+                                        <a class="dropdown-item" href="addlunch.html">Lunch</a>
+                                        <a class="dropdown-item" href="adddinner.html">Dinner</a>
+                                    </div>
                                 </li>
                                 <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Logins</a>
+                                    <a class="nav-link dropdown-toggle" href="editproduct.php" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Edit Product</a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                        <a class="dropdown-item" href="login.html">User Login</a>
-                                        <a class="dropdown-item" href="admin/adminlogin.html">Admin Login</a>
+                                        <a class="dropdown-item" href="editproductB.php">Breakfast</a>
+                                        <a class="dropdown-item" href="editproductL.php">Lunch</a>
+                                        <a class="dropdown-item" href="editproductD.php">Dinner</a>
                                     </div>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="contact.html">Contact</a>
+                                    <a class="nav-link" href="booking.php">Booking</a>
+                                </li>
+                               
+                                <li class="nav-item">
+                                    <a class="nav-link" href="logout.php">Logout</a>
                                 </li>
                             </ul>
                             <!-- Search Btn -->
@@ -127,7 +126,6 @@ if(!isset($_SESSION["username"]) && !isset($_SESSION["password"])){
                             <div class="hero-content">
                                 <h2>Lorem Ipsum</h2>
                                 <p>Morbi sed porta diam. Sed pulvinar cursus lorem, consectetur iaculis dolor scelerisque non. Praesent bibendum mauris risus, non aliquam tellus consectetur nec.</p>
-                                <a href="#reservation" class="btn caviar-btn"><span></span> Reservation</a>
                             </div>
                         </div>
                     </div>
@@ -143,7 +141,6 @@ if(!isset($_SESSION["username"]) && !isset($_SESSION["password"])){
                             <div class="hero-content">
                                 <h2>Lorem Ipsum</h2>
                                 <p>Morbi sed porta diam. Sed pulvinar cursus lorem, consectetur iaculis dolor scelerisque non. Praesent bibendum mauris risus, non aliquam tellus consectetur nec.</p>
-                                <a href="#reservation" class="btn caviar-btn"><span></span> Reservation</a>
                             </div>
                         </div>
                     </div>
@@ -155,208 +152,6 @@ if(!isset($_SESSION["username"]) && !isset($_SESSION["password"])){
     </section>
     <!-- ****** Welcome Area End ****** -->
 
-    <!-- ****** About Us Area Start ****** -->
-    <section class="caviar-about-us-area section-padding-150" id="about">
-        <div class="container">
-            <!-- About Us Single Area -->
-            <div class="row align-items-center">
-                <div class="col-12 col-md-6">
-                    <div class="about-us-thumbnail wow fadeInUp" data-wow-delay="0.5s">
-                        <img src="img/bg-img/about-1.jpg" alt="">
-                    </div>
-                </div>
-                <div class="col-12 col-md-6 col-lg-5 ml-md-auto">
-                    <div class="section-heading">
-                        <h2>About Us</h2>
-                    </div>
-                    <div class="about-us-content">
-                        <span>restaurant style</span>
-                        <p>Sed commodo augue eu diam tincidunt, sit amet auctor lectus semper. Mauris porttitor diam at fringilla tempor. Integer molestie rhoncus nisi a euismod. Etiam scelerisque eu enim et vestibulum. Mauris finibus, eros a faucibus varius, dui risus mattis massa, sed lobortis ante ante eget justo. Nam eu dolor lorem. Praesent blandit leo sit amet velit accumsan ultrices. Vestibulum nec libero vel sapien dictum euismod eu ac justo.</p>
-                    </div>
-                </div>
-            </div>
-            <!-- About Us Single Area -->
-            <div class="about-us-second-part">
-                <div class="row align-items-center pt-200">
-                    <div class="col-12 col-md-6 col-lg-5">
-                        <div class="about-us-content">
-                            <span>our chef</span>
-                            <p>Sed commodo augue eu diam tincidunt, sit amet auctor lectus semper. Mauris porttitor diam at fringilla tempor. Integer molestie rhoncus nisi a euismod. Etiam scelerisque eu enim et vestibulum. Mauris finibus, eros a faucibus varius, dui risus mattis massa, sed lobortis ante ante eget justo.</p>
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-6 ml-md-auto">
-                        <div class="about-us-thumbnail wow fadeInUp" data-wow-delay="0.5s">
-                            <img src="img/bg-img/about-2.jpg" alt="">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- ****** About Us Area End ****** -->
-
-    <!-- ****** Dish Menu Area Start ****** -->
-    <section class="caviar-dish-menu" id="menu">
-        <div class="container">
-            <div class="row">
-                <div class="col-12 menu-heading">
-                    <div class="section-heading text-center">
-                        <h2>Special</h2>
-                    </div>
-                    <!-- btn -->
-                    <a href="menu.html" class="btn caviar-btn"><span></span> View The Menu</a>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-12 col-sm-6 col-md-4">
-                    <div class="caviar-single-dish wow fadeInUp" data-wow-delay="0.5s">
-                        <img src="img/menu-img/dish-1.png" alt="">
-                        <div class="dish-info">
-                            <h6 class="dish-name">Lorem Ipsum Dolor Sit Amet</h6>
-                            <p class="dish-price">$45</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-sm-6 col-md-4">
-                    <div class="caviar-single-dish wow fadeInUp" data-wow-delay="1s">
-                        <img src="img/menu-img/dish-2.png" alt="">
-                        <div class="dish-info">
-                            <h6 class="dish-name">Lorem Ipsum</h6>
-                            <p class="dish-price">$45</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-sm-6 col-md-4">
-                    <div class="caviar-single-dish wow fadeInUp" data-wow-delay="1.5s">
-                        <img src="img/menu-img/dish-3.png" alt="">
-                        <div class="dish-info">
-                            <h6 class="dish-name">Lorem Ipsum Dolor Sit Amet</h6>
-                            <p class="dish-price">$45</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- ****** Dish Menu Area End ****** -->
-
-    <!-- ****** Awards Area Start ****** -->
-    <section class="caviar-awards-area" id="awards">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-12 col-md-2">
-                    <div class="section-heading">
-                        <h2>Awards</h2>
-                    </div>
-                </div>
-                <div class="col-12 col-md-9 ml-md-auto">
-                    <div class="caviar-awards d-sm-flex justify-content-between">
-                        <img src="img/awards-img/a-1.png" alt="">
-                        <img src="img/awards-img/a-2.png" alt="">
-                        <img src="img/awards-img/a-3.png" alt="">
-                        <img src="img/awards-img/a-4.png" alt="">
-                        <img src="img/awards-img/a-5.png" alt="">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- ****** Awards Area End ****** -->
-
-    <!-- ****** Testimonials Area Start ****** -->
-    <section class="caviar-testimonials-area" id="testimonial">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div class="testimonials-content">
-                        <div class="section-heading text-center">
-                            <h2>Testimonials</h2>
-                        </div>
-                        <div class="caviar-testimonials-slides owl-carousel">
-                            <!-- Single Testimonial Area -->
-                            <div class="single-testimonial">
-                                <div class="testimonial-thumb-name d-flex align-items-center">
-                                    <img src="img/testimonial-img/3.jpg" alt="">
-                                    <div class="tes-name">
-                                        <h5>Robert Jonson</h5>
-                                        <p>lorem ipsum</p>
-                                    </div>
-                                </div>
-                                <p>Sed commodo augue eu diam tincidunt, sit amet auctor lectus semper. Mauris porttitor diam at fringilla tempor. Integer molestie rhoncus nisi a euismod.</p>
-                            </div>
-                            <!-- Single Testimonial Area -->
-                            <div class="single-testimonial">
-                                <div class="testimonial-thumb-name d-flex align-items-center">
-                                    <img src="img/testimonial-img/2.jpg" alt="">
-                                    <div class="tes-name">
-                                        <h5>Clara Hudson</h5>
-                                        <p>lorem ipsum</p>
-                                    </div>
-                                </div>
-                                <p>Sed commodo augue eu diam tincidunt, sit amet auctor lectus semper. Mauris porttitor diam at fringilla tempor. Integer molestie rhoncus nisi a euismod.</p>
-                            </div>
-                            <!-- Single Testimonial Area -->
-                            <div class="single-testimonial">
-                                <div class="testimonial-thumb-name d-flex align-items-center">
-                                    <img src="img/testimonial-img/1.jpg" alt="">
-                                    <div class="tes-name">
-                                        <h5>Jane Black</h5>
-                                        <p>lorem ipsum</p>
-                                    </div>
-                                </div>
-                                <p>Sed commodo augue eu diam tincidunt, sit amet auctor lectus semper. Mauris porttitor diam at fringilla tempor. Integer molestie rhoncus nisi a euismod.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- ****** Testimonials Area End ****** -->
-
-    <!-- ****** Reservation Area Start ****** -->
-    <section class="caviar-reservation-area d-md-flex align-items-center" id="reservation">
-        <div class="reservation-form-area d-flex justify-content-end">
-            <div class="reservation-form">
-                <div class="section-heading">
-                    <h2>Reservation</h2>
-                </div>
-                <form action="reservations.php" method="post">
-                    <div class="row">
-                        <div class="col-12 col-lg-6">
-                            <input type="date" class="form-control" name="date">
-                        </div>
-                        <div class="col-12 col-lg-6">
-                            <input type="time" class="form-control" name="time">
-                        </div>
-                        <div class="col-12 col-lg-6">
-                            <input type="text" class="form-control" name="number" placeholder="Select Persons">
-                            
-                        </div>
-                        <div class="col-12 col-lg-6">
-                            <input type="text" class="form-control" name="fname" placeholder="First name">
-                        </div>
-                        <div class="col-12 col-lg-6">
-                            <input type="text" class="form-control"name="lname"placeholder="Last name">
-                        </div>
-                        <div class="col-12 col-lg-6">
-                            <input type="email" class="form-control" pattern="[^ @]*@[^ @]*"name="email" placeholder="Your Email Address" >
-                        </div>
-                        <div class="col-12">
-                            <textarea name="message" class="form-control" name="message"  cols="30" rows="10" placeholder="Your Message"></textarea>
-                        </div>
-                        <div class="col-12">
-                            <button type="submit" class="btn caviar-btn"><span></span> Reserve Your Desk</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-        <div class="reservation-side-thumb wow fadeInRightBig" data-wow-delay="0.5s">
-            <img src="img/bg-img/hero-3.jpg" alt="">
-        </div>
-    </section>
-    <!-- ****** Reservation Area End ****** -->
 
     <!-- ****** Footer Area Start ****** -->
     <footer class="caviar-footer-area">

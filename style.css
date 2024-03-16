@@ -566,14 +566,14 @@ li {
     cursor: pointer;
     text-align: center;
     opacity: 0.5;
-    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+  
     -webkit-transition-duration: 500ms;
     transition-duration: 500ms;
 }
 
 #closeBtn:hover {
     opacity: 1;
-    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+   
 }
 
 #closeBtn > i {
@@ -600,9 +600,11 @@ li {
     height: 70px;
     z-index: 9999;
 }
-
+.navbar {
+background: black;
+}
 .navbar-brand {
-    color: #fff;
+    color: #f8f8f6;
     font-size: 24px;
     font-weight: 700;
     margin-right: 0;
@@ -610,14 +612,14 @@ li {
 
 .navbar-brand:hover,
 .navbar-brand:focus {
-    color: #fff;
+    color: #ff0000;
     font-weight: 700;
 }
 
 .navbar-expand-lg .navbar-nav .nav-link {
     padding-right: 15px;
     padding-left: 15px;
-    color: #fff;
+    color: #f8f8f8;
     font-size: 14px;
 }
 
@@ -643,7 +645,7 @@ li {
 
 .dropdown-item:hover {
     background-color: #ff0000;
-    color: #fff;
+    color: #ffffff;
 }
 
 /* Hero Area CSS */

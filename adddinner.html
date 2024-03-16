@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -84,6 +83,9 @@
                                     </div>
                                 </li>
                                 <li class="nav-item">
+                                    <a class="nav-link" href="query.php">Query</a>
+                                </li>
+                                <li class="nav-item">
                                     <a class="nav-link" href="booking.php">Booking</a>
                                 </li>
                                
@@ -102,50 +104,42 @@
         </div>
     </header>
     <!-- ***** Header Area End ***** -->
-
-    <!-- ****** Welcome Area Start ****** -->
-    <section class="caviar-hero-area" id="home">
-        <!-- Welcome Social Info -->
-        <div class="welcome-social-info">
-            <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-            <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
-            <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-        </div>
-        <!-- Welcome Slides -->
-        <div class="caviar-hero-slides owl-carousel">
-            <!-- Single Slides -->
-            <div class="single-hero-slides bg-img" style="background-image: url(img/bg-img/hero-1.jpg);">
-                <div class="container h-100">
-                    <div class="row h-100 align-items-center">
-                        <div class="col-11 col-md-6 col-lg-4">
-                            <div class="hero-content">
-                                <h2>Lorem Ipsum</h2>
-                                <p>Morbi sed porta diam. Sed pulvinar cursus lorem, consectetur iaculis dolor scelerisque non. Praesent bibendum mauris risus, non aliquam tellus consectetur nec.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Slider Nav -->
-                <div class="hero-slides-nav bg-img" style="background-image: url(img/bg-img/hero-2.jpg);"></div>
-            </div>
-            <!-- Single Slides -->
-            <div class="single-hero-slides bg-img" style="background-image: url(img/bg-img/hero-2.jpg);">
-                <div class="container h-100">
-                    <div class="row h-100 align-items-center">
-                        <div class="col-11 col-md-6 col-lg-4">
-                            <div class="hero-content">
-                                <h2>Lorem Ipsum</h2>
-                                <p>Morbi sed porta diam. Sed pulvinar cursus lorem, consectetur iaculis dolor scelerisque non. Praesent bibendum mauris risus, non aliquam tellus consectetur nec.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+    
                 <!-- Slider Nav -->
                 <div class="hero-slides-nav bg-img" style="background-image: url(img/bg-img/hero-1.jpg);"></div>
             </div>
         </div>
     </section>
-    <!-- ****** Welcome Area End ****** -->
+    <br><br><br><br>
+
+    <div class="container border border-1 border-dark my-5 p-3">
+        <h1 class="text-center">Add Dinner</h1>
+        <form action="adddinner.php" method="post" enctype="multipart/form-data">
+            <!-- Your form fields here -->
+            <div class="mb-3">
+                <label for="" class="form-label">Name</label>
+                <input type="text" class="form-control" name="name" id="" aria-describedby="helpId" placeholder="">
+                <small id="helpId" class="form-text text-muted">Help text</small>
+            </div>
+            <div class="mb-3">
+                <label for="" class="form-label">Description</label>
+                <textarea class="form-control" name="description" id="" rows="3"></textarea>
+            </div>
+            <div class="mb-3">
+                <label for="" class="form-label">MRP</label>
+                <input type="number" class="form-control" name="mrp" id="" aria-describedby="helpId" placeholder="">
+                <small id="helpId" class="form-text text-muted">Help text</small>
+            </div>
+            <div class="mb-3">
+                <label for="" class="form-label">Choose Image</label>
+                <input type="file" class="form-control" name="file" id="" placeholder="" aria-describedby="fileHelpId">
+                <div id="fileHelpId" class="form-text">Help text</div>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+    </div>
 
 
     <!-- ****** Footer Area Start ****** -->

@@ -1,4 +1,9 @@
-
+<?php 
+session_start();
+if(!isset($_SESSION["username"]) && !isset($_SESSION["password"])){
+    header("Location:adminlogin.html");
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -84,6 +89,9 @@
                                     </div>
                                 </li>
                                 <li class="nav-item">
+                                    <a class="nav-link" href="query.php">Query</a>
+                                </li>
+                                <li class="nav-item">
                                     <a class="nav-link" href="booking.php">Booking</a>
                                 </li>
                                
@@ -102,50 +110,64 @@
         </div>
     </header>
     <!-- ***** Header Area End ***** -->
-
-    <!-- ****** Welcome Area Start ****** -->
-    <section class="caviar-hero-area" id="home">
-        <!-- Welcome Social Info -->
-        <div class="welcome-social-info">
-            <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-            <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
-            <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-        </div>
-        <!-- Welcome Slides -->
-        <div class="caviar-hero-slides owl-carousel">
-            <!-- Single Slides -->
-            <div class="single-hero-slides bg-img" style="background-image: url(img/bg-img/hero-1.jpg);">
-                <div class="container h-100">
-                    <div class="row h-100 align-items-center">
-                        <div class="col-11 col-md-6 col-lg-4">
-                            <div class="hero-content">
-                                <h2>Lorem Ipsum</h2>
-                                <p>Morbi sed porta diam. Sed pulvinar cursus lorem, consectetur iaculis dolor scelerisque non. Praesent bibendum mauris risus, non aliquam tellus consectetur nec.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Slider Nav -->
-                <div class="hero-slides-nav bg-img" style="background-image: url(img/bg-img/hero-2.jpg);"></div>
-            </div>
-            <!-- Single Slides -->
-            <div class="single-hero-slides bg-img" style="background-image: url(img/bg-img/hero-2.jpg);">
-                <div class="container h-100">
-                    <div class="row h-100 align-items-center">
-                        <div class="col-11 col-md-6 col-lg-4">
-                            <div class="hero-content">
-                                <h2>Lorem Ipsum</h2>
-                                <p>Morbi sed porta diam. Sed pulvinar cursus lorem, consectetur iaculis dolor scelerisque non. Praesent bibendum mauris risus, non aliquam tellus consectetur nec.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+    
                 <!-- Slider Nav -->
                 <div class="hero-slides-nav bg-img" style="background-image: url(img/bg-img/hero-1.jpg);"></div>
             </div>
         </div>
     </section>
+    <br><br><br><br>
     <!-- ****** Welcome Area End ****** -->
+    <?php
+include('config.php');
+
+if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
+}
+
+$sql = "SELECT * FROM dinner";
+$result = mysqli_query($conn, $sql);
+
+if (!$result) {
+    die("Error: " . $sql . "<br>" . mysqli_error($conn));
+}
+?>
+<div class="container mt-4">
+    <h1 class="text-center">Dinner Items</h1>
+    <div class="table-responsive">
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>MRP</th>
+                <th>Image</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+            while ($row = mysqli_fetch_assoc($result)) {
+                echo "<tr>";
+                echo "<td>{$row['Id']}</td>";
+                echo "<td>{$row['name']}</td>";
+                echo "<td>{$row['description']}</td>";
+                echo "<td>{$row['mrp']}</td>";
+                echo "<td><img src='dinner/{$row['image']}'  style='max-width: 100px; max-height: 100px;'></td>";
+                echo "<td><a href='editdinner.php?id={$row['Id']}'class='btn btn-lg btn-primary'>Edit</a> | <a href='deletedinner.php?id={$row['Id']}' class='btn btn-lg btn-danger'>Delete</a></td>";
+                echo "</tr>";
+            }
+            ?>
+        </tbody>
+    </table>
+</div>
+        </div>
+<?php
+mysqli_close($conn);
+?>
+<a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+    </div>
 
 
     <!-- ****** Footer Area Start ****** -->

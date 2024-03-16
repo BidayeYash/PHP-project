@@ -1,4 +1,9 @@
-
+<?php 
+session_start();
+if(!isset($_SESSION["username"]) && !isset($_SESSION["password"])){
+    header("Location:adminlogin.html");
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -78,17 +83,20 @@
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="editproduct.php" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Edit Product</a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                        <a class="dropdown-item" href="editproductB.php">Breakfast</a>
-                                        <a class="dropdown-item" href="editproductL.php">Lunch</a>
-                                        <a class="dropdown-item" href="editproductD.php">Dinner</a>
+                                        <a class="dropdown-item" href="addbreakfast.html">Breakfast</a>
+                                        <a class="dropdown-item" href="addlunch.html">Lunch</a>
+                                        <a class="dropdown-item" href="adddinner.html">Dinner</a>
                                     </div>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="quey.php">Query</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="booking.php">Booking</a>
                                 </li>
                                
                                 <li class="nav-item">
-                                    <a class="nav-link" href="logout.php">Logout</a>
+                                    <a class="nav-link" href="logout.html">Logout</a>
                                 </li>
                             </ul>
                             <!-- Search Btn -->
@@ -101,51 +109,66 @@
             </div>
         </div>
     </header>
-    <!-- ***** Header Area End ***** -->
-
-    <!-- ****** Welcome Area Start ****** -->
-    <section class="caviar-hero-area" id="home">
-        <!-- Welcome Social Info -->
-        <div class="welcome-social-info">
-            <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-            <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
-            <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-        </div>
-        <!-- Welcome Slides -->
-        <div class="caviar-hero-slides owl-carousel">
-            <!-- Single Slides -->
-            <div class="single-hero-slides bg-img" style="background-image: url(img/bg-img/hero-1.jpg);">
-                <div class="container h-100">
-                    <div class="row h-100 align-items-center">
-                        <div class="col-11 col-md-6 col-lg-4">
-                            <div class="hero-content">
-                                <h2>Lorem Ipsum</h2>
-                                <p>Morbi sed porta diam. Sed pulvinar cursus lorem, consectetur iaculis dolor scelerisque non. Praesent bibendum mauris risus, non aliquam tellus consectetur nec.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Slider Nav -->
-                <div class="hero-slides-nav bg-img" style="background-image: url(img/bg-img/hero-2.jpg);"></div>
-            </div>
-            <!-- Single Slides -->
-            <div class="single-hero-slides bg-img" style="background-image: url(img/bg-img/hero-2.jpg);">
-                <div class="container h-100">
-                    <div class="row h-100 align-items-center">
-                        <div class="col-11 col-md-6 col-lg-4">
-                            <div class="hero-content">
-                                <h2>Lorem Ipsum</h2>
-                                <p>Morbi sed porta diam. Sed pulvinar cursus lorem, consectetur iaculis dolor scelerisque non. Praesent bibendum mauris risus, non aliquam tellus consectetur nec.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Slider Nav -->
-                <div class="hero-slides-nav bg-img" style="background-image: url(img/bg-img/hero-1.jpg);"></div>
+    
+    
+                
+                
             </div>
         </div>
     </section>
-    <!-- ****** Welcome Area End ****** -->
+    <br><br><br><br>
+    
+    <?php
+
+include_once "config.php";
+
+// Fetch user data from the database
+$query = "SELECT * FROM reservations";
+$result = mysqli_query($conn, $query);
+?>
+    <div class="container mt-4">
+    <h1 class="text-center">Booking Management</h1>
+    <div class="table-responsive">
+    <table class="table table-bordered">
+    <thead>
+        <tr class="table-dark">
+        <tr>
+        <th>id</th>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Number</th>
+            <th>Fname</th>
+            <th>Lname</th>
+            <th>Email</th>
+            <th>Message</th>
+            <th>Action</th>
+        </tr>
+</thead>
+<tbody>
+        <?php
+        while ($row = mysqli_fetch_assoc($result)) {
+            echo "<tr>
+            <td>{$row['Id']}</td>
+                    <td>{$row['date']}</td>
+                    <td>{$row['time']}</td>
+                    <td>{$row['number']}</td>
+                    <td>{$row['fname']}</td>
+                    <td>{$row['lname']}</td>
+                    <td>{$row['email']}</td>
+                    <td>{$row['message']}</td>
+                    <td><a href='bookingreply.php?Id={$row['Id']}' class='btn btn-lg btn-success'>Reply</a></td>
+                  </tr>";
+        }
+        ?>
+        </tbody>
+    </table>
+    </div>
+    </div>
+    <?php
+mysqli_close($conn);
+?>
+<a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+    </div>
 
 
     <!-- ****** Footer Area Start ****** -->

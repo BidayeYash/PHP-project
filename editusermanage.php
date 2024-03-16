@@ -1,3 +1,59 @@
+<?php 
+session_start();
+if(!isset($_SESSION["username"]) && !isset($_SESSION["password"])){
+    header("Location:adminlogin.html");
+}
+?>
+<?php
+
+include('config.php');
+
+if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Get the form data
+    $id = $_POST['user id']; // Corrected form field name
+    $username = $_POST['username'];
+    $pass = $_POST['password'];
+    $email = $_POST['email'];
+
+    $username = mysqli_real_escape_string($conn, $username);
+    $password = mysqli_real_escape_string($conn, $password);
+    $email = mysqli_real_escape_string($conn, $email);
+
+
+
+
+    // Update item details in the database
+    $sql = "UPDATE users SET username = '$username', password = '$password', email ='$email' WHERE 'user id' = $id";
+
+    if (mysqli_query($conn, $sql)) {
+        header("Location:usermanage.php");
+        exit();
+    } else {
+        echo "Error updating record: " . mysqli_error($conn);
+    }
+} else {
+    $id = isset($_GET['user id']) ? $_GET['user id'] : null; 
+    
+    if (!$id) {
+        echo "Error: Missing or Invalid 'user id' parameter.";
+        exit();
+    }
+    $sql = "SELECT * FROM users WHERE 'user id' = $id"; // Corrected column name in SQL query
+    $result = mysqli_query($conn, $sql);
+
+    if (!$result) {
+        die("Error: " . $sql . "<br>" . mysqli_error($conn));
+    }
+    $row = mysqli_fetch_assoc($result);
+}
+
+?>
+
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -21,10 +77,10 @@
     <!-- Responsive CSS -->
     <link href="css/responsive/responsive.css" rel="stylesheet">
 
-</head>
+  </head>
 
-<body>
-    <!-- Preloader -->
+  <body>
+     <!-- Preloader -->
     <div id="preloader">
         <div class="caviar-load"></div>
         <div class="preload-icons">
@@ -83,6 +139,7 @@
                                         <a class="dropdown-item" href="editproductD.php">Dinner</a>
                                     </div>
                                 </li>
+                                
                                 <li class="nav-item">
                                     <a class="nav-link" href="booking.php">Booking</a>
                                 </li>
@@ -102,53 +159,62 @@
         </div>
     </header>
     <!-- ***** Header Area End ***** -->
-
-    <!-- ****** Welcome Area Start ****** -->
-    <section class="caviar-hero-area" id="home">
-        <!-- Welcome Social Info -->
-        <div class="welcome-social-info">
-            <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-            <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
-            <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-        </div>
-        <!-- Welcome Slides -->
-        <div class="caviar-hero-slides owl-carousel">
-            <!-- Single Slides -->
-            <div class="single-hero-slides bg-img" style="background-image: url(img/bg-img/hero-1.jpg);">
-                <div class="container h-100">
-                    <div class="row h-100 align-items-center">
-                        <div class="col-11 col-md-6 col-lg-4">
-                            <div class="hero-content">
-                                <h2>Lorem Ipsum</h2>
-                                <p>Morbi sed porta diam. Sed pulvinar cursus lorem, consectetur iaculis dolor scelerisque non. Praesent bibendum mauris risus, non aliquam tellus consectetur nec.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Slider Nav -->
-                <div class="hero-slides-nav bg-img" style="background-image: url(img/bg-img/hero-2.jpg);"></div>
-            </div>
-            <!-- Single Slides -->
-            <div class="single-hero-slides bg-img" style="background-image: url(img/bg-img/hero-2.jpg);">
-                <div class="container h-100">
-                    <div class="row h-100 align-items-center">
-                        <div class="col-11 col-md-6 col-lg-4">
-                            <div class="hero-content">
-                                <h2>Lorem Ipsum</h2>
-                                <p>Morbi sed porta diam. Sed pulvinar cursus lorem, consectetur iaculis dolor scelerisque non. Praesent bibendum mauris risus, non aliquam tellus consectetur nec.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+    
                 <!-- Slider Nav -->
                 <div class="hero-slides-nav bg-img" style="background-image: url(img/bg-img/hero-1.jpg);"></div>
             </div>
         </div>
     </section>
-    <!-- ****** Welcome Area End ****** -->
+    <br><br><br><br>
+    
+    <main>
+      <div class="container border border-5 border-dark my-5 p-5">
+        <form action="ediituser.php" method="post">
+            
+          <div class="mb-3">
+            <label for="" class="form-label">Name</label>
+            <input
+              type="text"
+              class="form-control"
+              name="name"
+              id="user id"
+              aria-describedby="helpId"
+              placeholder="Name"
+              value = "<?php echo "{$row['username']}"?>"
+            />
+            <small id="helpId" class="form-text text-muted">Help text</small>
+          </div>
 
-
-    <!-- ****** Footer Area Start ****** -->
+          <div class="mb-3">
+            <label for="" class="form-label">Email</label>
+            <input
+              type="email"
+              class="form-control"
+              name="email"
+              id=""
+              aria-describedby="emailHelpId"
+              placeholder="abc@mail.com"
+              value = "<?php echo "{$row['email']}"?>"
+            />
+            <small id="emailHelpId" class="form-text text-muted"
+              >Help text</small
+            >
+          </div>
+          <div class="mb-3">
+            <label for="" class="form-label">Password</label>
+            <input
+              type="password"
+              class="form-control"
+              name="pass"
+              id="user id"
+              placeholder=""
+              value = "<?php echo "{$row['password']}"?>"
+            />
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+      </div>
+    </main>
     <footer class="caviar-footer-area">
         <div class="container">
             <div class="row">
@@ -163,9 +229,8 @@
             </div>
         </div>
     </footer>
-    <!-- ****** Footer Area End ****** -->
+    <!-- Bootstrap JavaScript Libraries -->
 
-    <!-- Jquery-2.2.4 js -->
     <script src="js/jquery/jquery-2.2.4.min.js"></script>
     <!-- Popper js -->
     <script src="js/bootstrap/popper.min.js"></script>
@@ -176,3 +241,4 @@
     <!-- Active JS -->
     <script src="js/active.js"></script>
 </body>
+</html>
